@@ -1,0 +1,485 @@
+body{
+    min-width: 1200px;
+    min-height: 600px
+}
+
+*{
+    color: white;
+    background-color: black;
+}
+
+textarea:disabled{
+    background-color: inherit;
+    border: none;
+    font-size: 10pt;
+    font-weight: bolder
+}
+
+input:disabled{
+    background-color: inherit;
+    border: none;
+    font-size: 12.5pt;
+    font-weight: bold;
+}
+
+#playerInfo{
+    height: 100%; 
+    width: 50%; 
+    line-height: 1.6
+}
+
+.statBox{
+    height: 100%; 
+    width: 60%; 
+    position: absolute; 
+    left: 40%;
+    top: 0; 
+    box-shadow: -5px 0px 20px -2px rgb(106, 106, 255);
+}
+
+.stat{
+    position: relative;
+    top: 8%;
+    margin-left: 10px;
+    height: 80%;
+    width: 15%;
+    float: left;
+    border: 1px solid gray
+}
+
+.ability{
+    height: 100%;
+    width: 50%;
+    font-size: 18pt;
+    text-align: center;
+    border-right: 1px solid gray;
+    float: left;
+}
+
+.bonuses{
+    position: relative;
+    top:5px;
+    left: 10px;
+    height:50%;
+    width: 30%;
+    display: inline-block;
+}
+
+.mod{
+    height:50%;
+    margin-bottom: 10px;
+    font-size: 14pt;
+    font-weight: 900;
+    text-align: center;
+    box-shadow: 0 0 15px yellow
+}
+
+.save{
+    height: 50%;
+    font-size: 14pt;
+    font-weight: 900;
+    text-align: center;
+    box-shadow: 0 0 15px yellow
+}
+
+.statScore{
+    position: relative;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center
+}
+
+.statScore:disabled{
+    font-family: fantasy;
+    font-size: 20pt;
+    font-weight: bolder;
+}
+
+#hpTracker{
+    position: absolute; 
+    top: 15%; 
+    left: 2%; 
+    height: 80%; 
+    width: 15%;
+    box-shadow: 0 0 15px red
+
+}
+
+#hpAdj{
+    position:absolute;
+    height: 50%;
+    top:0%; 
+    left:35%; 
+    text-align: center; 
+    border-left: 1px solid darkred
+}
+
+.hpButtons{
+    height: 40%;
+    width: 45%;
+    background-color: black;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+#healButton:active{
+    background-color: lime;
+    border-color: black;    
+}
+
+.fa-plus{
+    color: lime;
+    background-color: inherit
+}
+
+#healButton:active .fa-plus{
+    color: white;
+}
+
+#dmgButton:active{
+    background-color: red;
+    border-color: black
+}
+
+.fa-fist-raised{
+    color: red;
+    background-color: inherit
+
+}
+
+#dmgButton:active .fa-fist-raised{
+    color: black
+}
+
+#health{
+    top: 50%; 
+    left: 0%; 
+    position: absolute; 
+    height: 40%; 
+    width: 100%; 
+    text-align: center;
+    border-top: 1px solid darkred;
+}
+
+#dmg{
+    height: 45%;
+    width: 30%;
+}
+
+#ac{
+    position: absolute;
+    left: 20%;
+    top: 15%;
+    height: 65%;
+    width: 7%;
+    box-shadow: 0 0 15px silver
+}
+
+#acScore{
+    top: 65%; 
+    left: 0%; 
+    position: absolute; 
+    height: 32%; 
+    width: 100%; 
+    text-align: center;
+    border-top: 2px solid silver;
+}
+
+#spellSave{
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 40%;
+    width: 7%;
+    box-shadow: 0 0 15px violet
+}
+
+#resource{
+    position: absolute;
+    left: 30%;
+    top: 55%;
+    height: 40%;
+    width: 7%;
+    box-shadow: 0 0 15px lightgreen
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: slategray;
+    top: 25%;
+    left: 0;
+    position: absolute;
+    width: calc(100% - 2px)
+  }
+  
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+  
+.tab button:hover {
+    background-color: black;
+    color: white;
+}
+  
+.tab button.active {
+    background-color: black;
+    color: white;
+}
+
+.tabcontent{
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 33%;
+    height: 67%;
+}
+  
+#backstory{
+    position: absolute; 
+    left: 50%; 
+    top: 0%;
+}
+
+#info{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 40%;
+    overflow: auto;
+}
+
+.info:disabled{
+    text-align: center;
+    background-color: lavender;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+}
+
+#cInfo td{
+    height: 40px;
+}
+
+#money{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: calc(20% - 1px);
+    width: 100%;
+    border-bottom: 1px solid white
+}
+
+#list li{
+    float: left;
+    list-style-type: none;
+}
+
+#pp,
+#gp,
+#ep,
+#sp,
+#cp{
+    height: 40%;
+    width: 40%;
+    text-align: center
+}
+
+#pp:disabled{
+    background-color: whitesmoke;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+    font-size: 10pt;
+}
+
+#gp:disabled{
+    background-color: gold;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+    font-size: 10pt;
+}
+
+#ep:disabled{
+    background-image: linear-gradient(to right, silver, gold);
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+    font-size: 10pt;
+}
+
+#sp:disabled{
+    background-color: silver;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+    font-size: 10pt;
+}
+
+#cp:disabled{
+    background-color: rgb(253, 95, 38);
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+    font-size: 10pt;
+}
+
+#weapons{
+    position: absolute;
+    left: 0%;
+    top: 20%;
+    height: 80%;
+    width: calc(50% - 5px);
+    border-right: 1px solid white;
+}
+
+#w td{
+    height: 30px;
+}
+
+.equip:disabled{
+    text-align: center;
+    background-color: skyblue;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: black;
+}
+
+#items{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    height: 80%;
+    width: 50%;
+}
+
+#addWeapon,
+#addItem{
+    width: 4%
+}
+
+#spells{
+    position: absolute;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap
+}
+
+.level{
+    height: 100%;
+    width: 35%;
+    border-right: 1px solid white;
+    overflow-y: auto;
+    display: inline-block;
+}
+
+#spellInfo,
+#itemInfo{
+    height: 40%;
+    width: 88%;
+    margin-left: 5%;
+    margin-top: 5%;
+    border: 1px solid white;
+}
+
+#itemInfo{
+    height: 50%
+}
+
+.spellName,
+.itemName{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font: 'Trebuchet MS';
+    font-size: 18pt;
+    border-bottom: 1px solid blue
+}
+
+.spName,
+.iName{
+    text-align: center
+}
+
+.spellDescription,
+.itemDescription{
+    height: 70%;
+    width: 100%;
+    text-align: center
+}
+
+.spDescription,
+.iDescription{
+    position: relative;
+    font: 'Trebuchet MS';
+    font-size: 10pt;
+    font-weight: 900;
+    top: 3px;
+}
+
+.add{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 6%;
+    width: 6%;
+    top: 0%;
+    left: 0%;
+}
+
+.add:hover{
+    cursor: pointer;
+}
+
+.add:active{
+    background-color: black
+}
+
+.skill{
+    float: left;
+    margin: 4%;
+    border-collapse: collapse
+}
+
+
+.skill tr:first-child{
+    border: none
+}
+
+.skill td{
+    height: 20px;
+    width: 30px;
+    border: 1px solid black;
+    text-align: right;
+    background-color: whitesmoke;
+    color: black;
+}
+
+.title{
+    font-size: 18pt;
+    text-align: center
+}
+
+.str,
+.dexterity,
+.intelligence,
+.wisdom,
+.charisma{
+    width: 30%;
+    text-align: right;
+}

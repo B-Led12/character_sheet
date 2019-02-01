@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html style = "height: 100%; width: 100%; margin: 0; position: absolute">
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="fontawesome-free-5.6.3-web/css/all.min.css">
+        <meta charset="UTF-8">
+        <title>Character Sheet</title>
+    </head>
+    <body style = "height: 100%; width: 100%; margin: 0; position: absolute">
+    <script src = "functions.js"></script>
+        <div style = "height: 25%; width: 100%; position: absolute; top: 0%; left: 0%">
+            <button id="edit" onclick="changeButton()">Save</button>
+            <div id="hpTracker">
+                <i class="far fa-heart fa-3x" style="position: absolute; top: 5%; left: 5%; color: red"></i>
+                <div id="hpAdj">
+                    <input id="dmg"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        type = "number"
+                        maxlength = "3"
+                    /><br>
+                    <span style="position: absolute; left: 27%; top: 60%">
+                        <button id="healButton" class="hpButtons" onclick="changeHP(this.id)"><i class="fas fa-plus"></i></button> 
+                        <button id="dmgButton" class="hpButtons" onclick="changeHP(this.id)"><i class="fas fa-fist-raised"></i></button>
+                    </span>
+                </div>
+                <span id="health">
+                    <b id="current" style="font-size:20pt; color: lime;"></b>
+                    <b id="max" style="font-size:20pt; color: lime"></b>
+                </span>
+            </div>
+            <div id="ac">
+                <div style="position:absolute; top:0%; left:0%; height:65%; width:100%">
+                    <i class="fas fa-shield-alt fa-3x" style="position:absolute; top:8%; left:23%; color: silver"></i>
+                </div>
+                <div id="acScore">
+                    <p style="font-size:20pt; margin: auto"><b>16</b></p>
+                </div>
+            </div>
+            <div id="spellSave">
+                Spell DC:<br>
+                <b style="font-size: 20pt; position: absolute; left: 40%; top: 40%">15</b>
+            </div>
+            <div id="resource">
+                Resource:<br>
+                <b style="font-size: 20pt; position: absolute; left: 40%; top: 40%">3d6</b>
+            </div>
+            <div class="statBox">
+                <div class="stat">
+                    <div class="ability">STR<hr><input class="statScore" id="str" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                        type = "number"
+                        maxlength = "2" /></div>
+                    <div class="bonuses">
+                        <b>Mod:</b><div class="mod" id="strMod"></div>
+                        <b>Save:</b><div class="save" id="strSave"></div></div>
+                </div>
+                <div class="stat">
+                        <div class="ability">DEX<hr><input class="statScore" id="dex" 
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                            type = "number"
+                            maxlength = "2" /></div>
+                        <div class="bonuses">
+                            <b>Mod:</b><div class="mod" id="dexMod"></div>
+                            <b>Save:</b><div class="save" id="dexSave"></div></div>
+                </div>
+                <div class="stat">
+                    <div class="ability">CON<hr><input class="statScore" id="con" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                        type = "number"
+                        maxlength = "2" /></div>
+                    <div class="bonuses">
+                        <b>Mod:</b><div class="mod" id="conMod"></div>
+                        <b>Save:</b><div class="save" id="conSave"></div></div>
+                </div>
+                <div class="stat">
+                    <div class="ability">INT<hr><input class="statScore" id="int" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                        type = "number"
+                        maxlength = "2" /></div>
+                    <div class="bonuses">
+                        <b>Mod:</b><div class="mod" id="intMod"></div>
+                        <b>Save:</b><div class="save" id="intSave"></div></div>
+                </div>
+                <div class="stat">
+                    <div class="ability">WIS<hr><input class="statScore" id="wis" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                        type = "number"
+                        maxlength = "2" /></div>
+                    <div class="bonuses">
+                        <b>Mod:</b><div class="mod" id="wisMod"></div>
+                        <b>Save:</b><div class="save" id="wisSave"></div></div>
+                </div>
+                <div class="stat">
+                    <div class="ability">CHA<hr><input class="statScore" id="cha" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); statBonuses(this.id)"
+                        type = "number"
+                        maxlength = "2" /></div>
+                    <div class="bonuses">
+                        <b>Mod:</b><div class="mod" id="chaMod"></div>
+                        <b>Save:</b><div class="save" id="chaSave"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'characterInfo')">Character Info</button>
+            <button class="tablinks" onclick="openTab(event, 'skills')">Skills</button>
+            <button class="tablinks" onclick="openTab(event, 'equipment')">Equipment</button>
+            <button class="tablinks" onclick="openTab(event, 'spells')">Spells</button>
+            <button class="tablinks" onclick="openTab(event, 'notes')">Notes</button>
+        </div>
+        <div id="characterInfo" class="tabcontent">
+            <div id="info">
+                <table id="cInfo">
+                    <tr>
+                        <td>Name:</td>  <td><input type = "text" id = "name" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Race:</td>  <td><input type = "text" id = "race" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Class/Level:</td> <td><input type = "text" id = "class" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Height:</td> <td><input type = "text" id = "height" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Weight:</td> <td><input type="text" id="weight" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Alignment:</td> <td><input type="text" id="alignment" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Player Name:</td> <td><input type="text" id="playername" class="info"></td>
+                    </tr>
+                    <tr>
+                        <td>Max HP:</td> <td><input id="maxHP" 
+                                                    class="info"
+                                                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); health()"
+                                                   type = "number"
+                                                   maxlength = "3" /></td>
+                    </tr>
+                    <tr>
+                        <td>Proficiency Bonus:</td> <td><input id="prof" 
+                                                               class="info"
+                                                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                               type = "number"
+                                                               maxlength = "1" /></td>
+                    </tr>
+                </table><br><br>
+                <h3><u>Personality Traits</u></Personality></h3>
+                <textarea id="traits" rows="10" cols="40" style="resize: none"></textarea><br>
+                <h3><u>Ideals</u></h3>
+                <textarea id="ideals" rows="10" cols="40" style="resize: none"></textarea><br>
+                <h3><u>Bonds</u></h3>
+                <textarea id="bonds" rows="10" cols="40" style="resize: none"></textarea><br>
+                <h3><u>Flaws</u></h3>
+                <textarea id="flaws" rows="10" cols="40" style="resize: none"></textarea><br>
+            </div>
+            <div id="backstory">
+                <h2>Backstory</h2>
+                <textarea rows="20" cols="70" style="resize: none"></textarea>
+            </div>
+        </div>
+
+        <div id="skills" class="tabcontent">
+            <table class="skill" id="strength">
+                <tr>
+                    <td colspan="3" class="title">Strength</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="athletics" onclick="proficient()"></td> <td>Athletics</td> <td class="str" id="athletics"></td>
+                </tr>
+            </table>
+            <table class="skill" id="dexterity">
+                <tr>
+                    <td colspan="3" class="title">Dexterity</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="acrobatics" onclick="proficient()"></td><td>Acrobatics</td> <td class="dex" id="acrobatics"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="sleightofhand" onclick="proficient()"></td> <td>Sleight of Hand</td> <td class="dex" id="sleightofhand"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="stealth" onclick="proficient()"></td><td>Stelath</td> <td class="dex" id="stealth"></td>
+                </tr>
+            </table>
+            <table class="skill" id="intelligence">
+                <tr>
+                    <td colspan="3" class="title">Intelligence</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="arcana" onclick="proficient()"></td><td>Arcana</td> <td class="int" id="arcana"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="history" onclick="proficient()"></td><td>History</td> <td class="int" id="history"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="investigation" onclick="proficient()"></td><td>Investigation</td> <td class="int" id="investigation"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="nature" onclick="proficient()"></td><td>Nature</td> <td class="int" id="nature"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="religion" onclick="proficient()"></td><td>Religion</td> <td class="int" id="religion"></td>
+                </tr>
+            </table>
+            <table class="skill" id="wisdom">
+                <tr>
+                    <td colspan="3" class="title">Wisdom</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="animalhandling" onclick="proficient()"></td><td>Animal Handling</td> <td class="wis" id="animalhandling"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="insight" onclick="proficient()"></td><td>Insight</td> <td class="wis" id="insight"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="medicine" onclick="proficient()"></td><td>Medicine</td> <td class="wis" id="medicine"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="perception" onclick="proficient()"></td><td>Perception</td> <td class="wis" id="perception"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="survival" onclick="proficient()"></td><td>Survival</td> <td class="wis" id="survival"></td>
+                </tr>
+            </table>
+            <table class="skill" id="charisma">
+                <tr>
+                    <td colspan="3" class="title">Charisma</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="deception" onclick="proficient()"></td><td>Deception</td> <td class="cha" id="deception"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="intimidation" onclick="proficient()"></td><td>Intimidation</td> <td class="cha" id="intimidation"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="performance" onclick="proficient()"></td><td>Performance</td> <td class="cha" id="performance"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="persuasion" onclick="proficient()"></td><td>Persuasion</td> <td class="cha" id="persuasion"></td>
+                </tr>
+            </table>
+        </div>
+          
+          <div id="equipment" class="tabcontent">
+              <div id="money">
+                  <ul id="list">
+                      <li><table><tr><td>Platinum:</td><td><input type="text" id="pp"></td></tr></table></li>
+                      <li><table><tr><td>Gold:</td><td><input type="text" id="gp"></td></tr></table></li>
+                      <li><table><tr><td>Electrum:</td><td><input type="text" id="ep"></td></tr></table></li>
+                      <li><table><tr><td>Silver:</td><td><input type="text" id="sp"></td></tr></table></li>
+                      <li><table><tr><td>Copper:</td><td><input type="text" id="cp"></td></tr></table></li>
+                  </ul>
+              </div>
+              <div id="weapons" style="overflow: auto">
+                  <h3>Weapons</h3><hr>
+                  <button class="add" id="addWeapon" onclick="addWeapon()"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button><br>
+                    <table id="w">
+                    </table>
+              </div>
+              <div id="items" style="overflow: auto">
+                  <h3>Items</h3><hr>
+                    <button class="add" id="addItem" onclick="addItem(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button><br>
+              </div>
+          </div>
+          
+          <span id="spells" class="tabcontent">
+              <div class="level" id="cantrip" style="text-align: center">
+                <h2 style="margin-top: 3px">Cantrips</h2><hr>
+                <button class="add" id="add0" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="1st" style="text-align: center">
+                    <h2 style="margin-top: 3px">1st Level</h2><hr>
+                    <button class="add" id="add1" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="2nd" style="text-align: center">
+                    <h2 style="margin-top: 3px">2nd Level</h2><hr>
+                    <button class="add" id="add2" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="3rd" style="text-align: center">
+                    <h2 style="margin-top: 3px">3rd Level</h2><hr>
+                    <button class="add" id="add3" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="4th" style="text-align: center">
+                    <h2 style="margin-top: 3px">4th Level</h2><hr>
+                    <button class="add" id="add4" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="5th" style="text-align: center">
+                    <h2 style="margin-top: 3px">5th Level</h2><hr>
+                    <button class="add" id="add5" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="6th" style="text-align: center">
+                    <h2 style="margin-top: 3px">6th Level</h2><hr>
+                    <button class="add" id="add6" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="7th" style="text-align: center">
+                    <h2 style="margin-top: 3px">7th Level</h2><hr>
+                    <button class="add" id="add7" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="8th" style="text-align: center">
+                    <h2 style="margin-top: 3px">8th Level</h2><hr>
+                    <button class="add" id="add8" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+              <div class="level" id="9th" style="text-align: center">
+                    <h2 style="margin-top: 3px">9th Level</h2><hr>
+                    <button class="add" id="add9" onclick="addSpell(this.parentNode.id)"><i class="fas fa-plus" style="color: blue; background-color:inherit"></i></button>
+              </div>
+          </span>
+          <div id="notes" class="tabcontent">
+              <h2>Notes</h2>
+              <textarea id="nts" rows="22" cols="155" style="resize: none"></textarea>
+          </div>
+    </body>
+</html>
